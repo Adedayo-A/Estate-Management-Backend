@@ -16,7 +16,5 @@ namespace Estate_Manager.API.Data.ViewModels
         public string Type { get; set; }
         [Required]
         public int OccupantId { get; set; }
-        [Required]
-        public int EstateId { get; set; }
     }
 }

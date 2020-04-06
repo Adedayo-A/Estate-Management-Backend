@@ -117,6 +117,60 @@ namespace Estate_Manager.API.Controllers
 
 
 
+        //------------------------------ HOMES ------------------------------------------//
+
+        [HttpGet("{roadId}/homes")]
+        public async Task<IActionResult> GetRoadHomes(int roadId)
+        {
+            var roadFromRepo = await repository.GetEstateRoads(roadId);
+            if (roadFromRepo == null)
+            {
+                return NotFound("Road Not Found");
+            }
+            var homesFromRepo = await repository.GetRoadHomes(roadId);
+            var homesToReturn = mapper.Map<IEnumerable<HomeListVM>>(homesFromRepo);
+            return Ok(homesToReturn);
+        }
+
+        [HttpGet("/roads/{roadId}", Name = "GetHome")]
+        public async Task<IActionResult> GetRoadHome(int roadId)
+        {
+            var roadFromRepo = await repository.GetEstateRoads(roadId);
+            if (roadFromRepo == null)
+            {
+                return NotFound("Road Not Found");
+            }
+
+            var homeFromRepo = await repository.GetRoadHomes(roadId);
+            if (homeFromRepo == null)
+            {
+                return NotFound("Home Not Found");
+            }
+
+            var homeToReturn = mapper.Map<HomeListVM>(homeFromRepo);
+            return Ok(homeToReturn);
+        }
+
+        [Authorize(Policy = "Admin")]
+        [HttpPost("{estateId}/roads/{roadId}/home")]
+        public async Task<IActionResult> PostRoadHome(int roadId, HomeCreateVM homeCreate)
+        {
+            var roadFromRepo = await repository.GetEstateRoad(roadId);
+            if (roadFromRepo == null)
+            {
+                return NotFound("Road Not Found");
+            }
+            var homeToCreate = mapper.Map<Home>(homeCreate);
+            homeToCreate.RoadId = roadId;
+            repository.Add(homeToCreate);
+            var save = await repository.SaveChanges();
+            if (!save)
+            {
+                throw new Exception();
+            }
+            var homeToReturn = mapper.Map<HomeListVM>(homeToCreate);
+            return CreatedAtRoute("GetHome", new { roadId = roadId, homeId = homeToCreate.RoadId }, homeToReturn);
+        }
 
     }
 }

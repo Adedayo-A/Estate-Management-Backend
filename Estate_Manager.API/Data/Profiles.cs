@@ -21,8 +21,18 @@ namespace Estate_Manager.API.Data
             CreateMap<EstateCreateVM, Estate>();
             CreateMap<Estate, EstateListVM>();
             CreateMap<RoadCreateVM, Road>();
-            CreateMap<Road, RoadListVM>();
+            CreateMap<Road, RoadListVM>()
+                .ForMember(d => d.NoOfHomes, o =>
+            {
+                o.MapFrom(p => p.Homes.Count());
+            }
+           );
+
+
             CreateMap<User, UserListVM>();
+            CreateMap<Home, HomeListVM>();
+            CreateMap<HomeOwner, HomeOwnerListVM>();
+            CreateMap<HomeCreateVM, Home>();
         }
     }
 }

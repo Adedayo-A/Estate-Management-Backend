@@ -12,6 +12,8 @@
     <Compile Remove="Migrations\20200401030142_AddedEstateIdsToEntities.Designer.cs" />
     <Compile Remove="Migrations\20200401030827_AddedEstateIdsToEntitiesNoRequired.cs" />
     <Compile Remove="Migrations\20200401030827_AddedEstateIdsToEntitiesNoRequired.Designer.cs" />
+    <Compile Remove="Migrations\20200403080631_AddedNoOfHomes.cs" />
+    <Compile Remove="Migrations\20200403080631_AddedNoOfHomes.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

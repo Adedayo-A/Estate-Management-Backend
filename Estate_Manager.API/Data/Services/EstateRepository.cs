@@ -35,16 +35,17 @@ namespace Estate_Manager.API.Data.Services
             //return await data.Estates.Where(e => e.EstateId == estateId).FirstOrDefaultAsync();
         }
 
-        public async Task<IEnumerable<HomeOwner>> GetHomeOwners(int estateId)
+
+        public async Task<IEnumerable<HomeOwner>> GetHomeOwners(int homeId)
         {
             //return await data.HomeOwners.FindAsync(estateId);
-            return await data.HomeOwners.Where(e => e.EstateId == estateId).ToArrayAsync();
+            return await data.HomeOwners.Where(e => e.HomeId == homeId).ToArrayAsync();
         }
 
-        public async Task<IEnumerable<Occupant>> GetOccupants(int estateId)
+        public async Task<IEnumerable<Occupant>> GetOccupants(int homeId)
         {
             //return await data.HomeOwners.FindAsync(estateId);
-            return await data.Occupants.Where(e => e.EstateId == estateId).ToArrayAsync();
+            return await data.Occupants.Where(e => e.HomeId == homeId).ToArrayAsync();
         }
 
         public async Task<IEnumerable<Estate>> GetEstates()
@@ -52,19 +53,24 @@ namespace Estate_Manager.API.Data.Services
             return await data.Estates.ToArrayAsync();
         }
 
-        public async Task<HomeOwner> GetHomeOwner(int estateId, int homeId)
+        public async Task<IEnumerable<Home>> GetRoadHomes(int roadId)
         {
-            return await data.HomeOwners.FindAsync(estateId, homeId);
+            return await data.Homes.Include(x => x.HomeOwner).Where(e => e.RoadId == roadId && e.HomeOwnerId != null ).ToArrayAsync();
         }
+
+        //public async Task<Home> GetRoadHome(int homeId)
+        //{
+          //  return await data.Homes.FindAsync(HomeId, homeId);
+        //}
 
         public async Task<Occupant> GetOccupant(int estateId, int OccupantId)
         {
             return await data.Occupants.FindAsync(estateId, OccupantId);
         }
 
-        public async Task<IEnumerable<Staff>> GetStaff(int estateId)
+        public async Task<IEnumerable<Staff>> GetStaff(int occupantId)
         {
-            return await data.Staff.Where(e => e.EstateId == estateId).ToArrayAsync();
+            return await data.Staff.Where(e => e.OccupantId == occupantId).ToArrayAsync();
         }
 
         public async Task<Staff> GetAStaff(int estateId, int StaffId)
@@ -84,12 +90,17 @@ namespace Estate_Manager.API.Data.Services
 
         public async Task<IEnumerable<Road>> GetEstateRoads(int estateId)
         {
-            return await data.Roads.Where(r => r.EstateId == estateId).ToArrayAsync();
+            return await data.Roads.Include(r => r.Homes).Where(r => r.EstateId == estateId).ToArrayAsync();
         }
 
         public async Task<Road> GetEstateRoad(int roadId)
         {
             return await data.Roads.Where(r => r.RoadId == roadId).FirstOrDefaultAsync();
+        }
+
+        public Task<HomeOwner> GetHomeOwner(int homeId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Estate_Manager.API.Data.ViewModels
     {
         [Required]
         public string Name { get; set; }
+        public int NoOfHomes { get; set; }
     }
 }

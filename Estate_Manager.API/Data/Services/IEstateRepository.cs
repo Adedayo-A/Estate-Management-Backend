@@ -11,8 +11,13 @@ namespace Estate_Manager.API.Data.Services
         void Add<T>(T entity) where T : class;
         void Delete<T>(T entity) where T : class;
         Task<IEnumerable<Estate>> GetEstates();
-        Task<IEnumerable<HomeOwner>> GetHomeOwners(int estateId);
-        Task<HomeOwner> GetHomeOwner(int estateId, int homeId);
+        Task<IEnumerable<Home>> GetRoadHomes(int roadId);
+        //Task<Home> GetRoadHome(int roadId);
+
+
+
+        Task<IEnumerable<HomeOwner>> GetHomeOwners(int homeId);
+        Task<HomeOwner> GetHomeOwner(int homeId);
 
         Task<IEnumerable<Occupant>> GetOccupants(int estateId);
         Task<Occupant> GetOccupant(int estateId, int OccupantId);

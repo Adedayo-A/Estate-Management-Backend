@@ -20,6 +20,5 @@ namespace Estate_Manager.API.Data.ViewModels
         public DateTime DOB { get; set; }
         [Required]
         public int HomeId { get; set; }
-        public int EstateId { get; set; }
     }
 }

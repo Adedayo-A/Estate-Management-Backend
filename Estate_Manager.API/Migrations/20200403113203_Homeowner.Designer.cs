@@ -4,14 +4,16 @@ using Estate_Manager.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estate_Manager.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200403113203_Homeowner")]
+    partial class Homeowner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,7 +48,7 @@ namespace Estate_Manager.API.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HomeNumber")
+                    b.Property<int>("HomeNo")
                         .HasColumnType("int");
 
                     b.Property<int?>("HomeOwnerId")
@@ -247,21 +249,21 @@ namespace Estate_Manager.API.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "fbd97f5f-de54-4684-905e-d807cba0cdf7",
+                            ConcurrencyStamp = "d9b849b1-da5e-4e02-9dc7-bbd1e2654f6f",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "8d7edfa5-93a3-4d29-b106-285a69371e7e",
+                            ConcurrencyStamp = "b5236b7f-29d3-4be4-8048-36d815b6453c",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "7f22a408-e26b-4290-ae35-6fe09a180552",
+                            ConcurrencyStamp = "6cdd539b-a8ad-4a6e-abe5-207ce644ff98",
                             Name = "User",
                             NormalizedName = "USER"
                         });

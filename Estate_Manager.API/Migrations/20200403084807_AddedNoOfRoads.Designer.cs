@@ -4,14 +4,16 @@ using Estate_Manager.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estate_Manager.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200403084807_AddedNoOfRoads")]
+    partial class AddedNoOfRoads
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,12 +47,6 @@ namespace Estate_Manager.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("HomeNumber")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HomeOwnerId")
-                        .HasColumnType("int");
 
                     b.Property<int>("RoadId")
                         .HasColumnType("int");
@@ -89,8 +85,7 @@ namespace Estate_Manager.API.Migrations
 
                     b.HasKey("HomeOwnerId");
 
-                    b.HasIndex("HomeId")
-                        .IsUnique();
+                    b.HasIndex("HomeId");
 
                     b.ToTable("HomeOwners");
                 });
@@ -247,21 +242,21 @@ namespace Estate_Manager.API.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "fbd97f5f-de54-4684-905e-d807cba0cdf7",
+                            ConcurrencyStamp = "d34f3926-d950-4ffc-aaae-b5f606493f85",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "8d7edfa5-93a3-4d29-b106-285a69371e7e",
+                            ConcurrencyStamp = "ca05f225-3b83-4606-8896-c83c97a76165",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "7f22a408-e26b-4290-ae35-6fe09a180552",
+                            ConcurrencyStamp = "6e22f8e0-44c7-4e34-b7da-efe865b30c19",
                             Name = "User",
                             NormalizedName = "USER"
                         });
@@ -464,9 +459,9 @@ namespace Estate_Manager.API.Migrations
             modelBuilder.Entity("Estate_Manager.API.Data.Entities.HomeOwner", b =>
                 {
                     b.HasOne("Estate_Manager.API.Data.Entities.Home", "Home")
-                        .WithOne("HomeOwner")
-                        .HasForeignKey("Estate_Manager.API.Data.Entities.HomeOwner", "HomeId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .WithMany()
+                        .HasForeignKey("HomeId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

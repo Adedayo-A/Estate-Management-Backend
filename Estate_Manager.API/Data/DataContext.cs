@@ -26,7 +26,14 @@ namespace Estate_Manager.API.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
+
             base.OnModelCreating(builder);
+            builder.Entity<Home>()
+                .HasOne(h => h.HomeOwner)
+                .WithOne(ho => ho.Home)
+                .HasForeignKey<HomeOwner>(ho => ho.HomeId)
+                .OnDelete(DeleteBehavior.Restrict);
+
             builder.Entity<UserEstate>().HasKey(u => new
             {
                 u.EstateId,

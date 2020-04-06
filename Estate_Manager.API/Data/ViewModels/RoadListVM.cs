@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,5 +10,6 @@ namespace Estate_Manager.API.Data.ViewModels
     {
         public int RoadId { get; set; }
         public string Name { get; set; }
+        public int NoOfHomes { get; set; }
     }
 }

@@ -4,14 +4,16 @@ using Estate_Manager.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Estate_Manager.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20200403115951_Homeowners")]
+    partial class Homeowners
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -247,21 +249,21 @@ namespace Estate_Manager.API.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "fbd97f5f-de54-4684-905e-d807cba0cdf7",
+                            ConcurrencyStamp = "8180dceb-bcf4-4403-8536-f9cfd50ca614",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "8d7edfa5-93a3-4d29-b106-285a69371e7e",
+                            ConcurrencyStamp = "f85dd4d9-7030-454e-8f58-17ddd29506b4",
                             Name = "Supervisor",
                             NormalizedName = "SUPERVISOR"
                         },
                         new
                         {
                             Id = "3",
-                            ConcurrencyStamp = "7f22a408-e26b-4290-ae35-6fe09a180552",
+                            ConcurrencyStamp = "47bbc8c9-949c-4234-86ff-b5f64461e643",
                             Name = "User",
                             NormalizedName = "USER"
                         });

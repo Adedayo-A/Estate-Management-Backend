@@ -36,7 +36,7 @@ namespace Estate_Manager.API.Controllers
         [HttpGet("{estateId}, {homeOwnerId}", Name = "GetHomeOwner")]
         public async Task<IActionResult> GetHomeOwner(int estateId, int homeOwnerId)
         {
-            var homeOwnerFromRepo = await repository.GetHomeOwner(estateId, homeOwnerId);
+            var homeOwnerFromRepo = await repository.GetHomeOwner(estateId);
             if (homeOwnerFromRepo == null)
             {
                 return NotFound("Home Owner Not Found");

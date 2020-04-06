@@ -15,7 +15,5 @@ namespace Estate_Manager.API.Data.Entities
         public DateTime DOB { get; set; }
         public Home Home { get; set; }
         public int HomeId { get; set; }
-        public int EstateId { get; set; }
-        public Estate Estate { get; set; }
     }
 }

@@ -8,7 +8,5 @@
         public string Type { get; set; }
         public int OccupantId { get; set; }
         public Occupant Occupant { get; set; }
-        public int EstateId { get; set; }
-        public Estate Estate { get; set; }
     }
 }
